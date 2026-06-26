@@ -4,68 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>r/place 2</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .landing {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-      padding: 20px;
-    }
-    .landing h1 { font-size: 48px; margin-bottom: 10px; }
-    .landing p { color: #888; max-width: 500px; margin-bottom: 20px; }
-    .landing input {
-      padding: 10px 16px;
-      font-size: 16px;
-      background: #222;
-      border: 1px solid #444;
-      color: #eee;
-      border-radius: 6px;
-      width: 360px;
-      margin-bottom: 12px;
-      outline: none;
-    }
-    .landing input:focus { border-color: #0083C7; }
-    .landing button {
-      padding: 10px 32px;
-      font-size: 16px;
-      background: #0083C7;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .landing button:hover { background: #0070b0; }
-    .landing .hint { font-size: 12px; color: #666; margin-top: 16px; }
-    .landing .hint code { color: #aaa; }
-    body { overflow: hidden; }
-  </style>
+  <script>
+    const p = new URLSearchParams(location.search);
+    const b = p.get("backend") || "r-place-2.onrender.com";
+    const proto = p.get("protocol");
+    let qs = "?backend=" + encodeURIComponent(b);
+    if (proto) qs += "&protocol=" + encodeURIComponent(proto);
+    location.replace("/canvas.html" + qs);
+  </script>
 </head>
 <body>
-  <div class="landing">
-    <h1>r/place 2</h1>
-    <p>Collaborative pixel canvas — connect to a running backend to start drawing.</p>
-    <input id="backend-input" type="text" placeholder="e.g. bore.pub:12345 or random.trycloudflare.com" />
-    <button id="connect-btn">Connect</button>
-    <div class="hint">
-      Running your own backend? Use <code>tunnel.sh</code> from the <a href="https://github.com/r-place-2/r-place-2">r-place-2 repo</a>.
-    </div>
-  </div>
-  <script>
-    const input = document.getElementById("backend-input");
-    const btn = document.getElementById("connect-btn");
-    const params = new URLSearchParams(location.search);
-    const prefill = params.get("backend");
-    if (prefill) input.value = prefill;
-    btn.addEventListener("click", () => {
-      const val = input.value.trim();
-      if (!val) return;
-      location.href = "/canvas.html?backend=" + encodeURIComponent(val);
-    });
-    input.addEventListener("keydown", (e) => { if (e.key === "Enter") btn.click(); });
-  </script>
+  <p style="color:#888;font-family:sans-serif;padding:2em">Weiterleitung nach r/place 2...</p>
 </body>
 </html>
